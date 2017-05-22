@@ -13,6 +13,10 @@ namespace ValidationEngine
         public bool IsValid { get; set; }
         public bool Validate(string email)
         {
+            if (email == null)
+            {
+                return false;
+            }
             var regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             var match = regex.Match(email);
             return match.Success;

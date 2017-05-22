@@ -39,5 +39,14 @@ namespace ValidationEngineTests
 
             Assert.IsFalse(sut.IsValid);
         }
+        [Test]
+        public void ValidateEmailThatIsNull()
+        {
+            var sut = new ValidationEngine.ValidationEngine();
+
+            sut.IsValid = sut.Validate(null);
+
+            Assert.IsFalse(sut.IsValid);
+        }
     }
 }
