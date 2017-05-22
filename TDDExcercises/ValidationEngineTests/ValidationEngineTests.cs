@@ -12,13 +12,32 @@ namespace ValidationEngineTests
     public class ValidationEngineTests
     {
         [Test]
-        public void ValidateEmail()
+        public void ValidateValidEmail()
         {
             var sut = new ValidationEngine.ValidationEngine();
 
             sut.IsValid = sut.Validate("hej@hotmail.com");
 
             Assert.IsTrue(sut.IsValid);
+        }
+
+        [Test]
+        public void ValidateEmailThatIsMissingAtSign()
+        {
+            var sut = new ValidationEngine.ValidationEngine();
+
+            sut.IsValid = sut.Validate("hejhotmail.com");
+
+            Assert.IsFalse(sut.IsValid);
+        }
+        [Test]
+        public void ValidateEmailThatIsMissingDot()
+        {
+            var sut = new ValidationEngine.ValidationEngine();
+
+            sut.IsValid = sut.Validate("hej@hotmailcom");
+
+            Assert.IsFalse(sut.IsValid);
         }
     }
 }
